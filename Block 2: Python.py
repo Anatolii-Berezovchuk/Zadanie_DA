@@ -32,3 +32,25 @@ def missing_number_sum(nums):
 
 
 # №3 Факторизация
+def prime_factors(n: int) -> list[int]:
+    if n <= 1:
+        return []
+    factors = []
+    
+    while n % 2 == 0:
+        factors.append(2)
+        n //= 2
+        
+    i = 3
+    while i * i <= n:
+        while n % i == 0:
+            factors.append(i)
+            n //= i
+        i += 2
+
+    if n > 1:
+        factors.append(n)
+
+    return factors
+# Время: 𝑂(√𝑛) в худшем случае (для простого 𝑛 придётся проверить делители до √𝑛).
+# Память: 𝑂(log⁡𝑛) - список множителей содержит не более 𝑂(log𝑛) элементов (при разложении на множители 2).
